@@ -1,6 +1,6 @@
 ## MySql
 ```
-PORT: 33060
+PORT: 3306
 MYSQL_DATABASE: maon_db
 MYSQL_ROOT_PASSWORD: root
 MYSQL_ROOT_USER: root
@@ -42,6 +42,10 @@ docker compose up -d
 2. Copy the .htaccess file from /public directory to your Laravel root folder.
 ```
 ## Launch App
+### Create file .env
+```
+Copy .evn.example .env. Don't forget run command php artisan key:generate
+```
 ### Run and create table
 ```
 php artisan migrate
