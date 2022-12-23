@@ -44,7 +44,7 @@ docker compose up -d
 ## Launch App
 ### Create file .env
 ```
-Copy .evn.example .env. Don't forget run command php artisan key:generate
+Copy .env.example .env. Don't forget run command php artisan key:generate
 ```
 ### Run and create table
 ```
