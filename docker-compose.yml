@@ -1,0 +1,37 @@
+version: '1'
+services:
+  db:
+    container_name: Maon-db
+    image: mysql:8.0
+    command: "--default-authentication-plugin=mysql_native_password"
+    ports:
+      - "33062:3306"
+    environment:
+      MYSQL_DATABASE: maon_db
+      MYSQL_USER: maon
+      MYSQL_PASSWORD: maon
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_USER: root
+
+  phpmyadmin:
+    container_name: Maon-Phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: Maon-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 64000M
+    depends_on:
+      - db
+
+  project:
+    container_name: Maon-be
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    build: .
+    volumes:
+      - .:/var/www/html
