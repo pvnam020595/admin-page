@@ -44,7 +44,10 @@ docker compose up -d
 ## Launch App
 ### Create file .env
 ```
-Copy .env.example .env. Don't forget run command php artisan key:generate
+Copy .env.example .env. Don't forget run command 
+```
+```php
+php artisan key:generate
 ```
 ### Run and create table
 ```
@@ -61,4 +64,10 @@ GET - http://localhost/api/
 POST - http://localhost/api/create
 PUT - http://localhost/api/edit/{id}
 DELETE - http://localhost/api/delete/{id}
+```
+# Note
+**Please run command for lint code and fix them before PUSH code.**
+```php
+composer sniff
+composer lint
 ```
