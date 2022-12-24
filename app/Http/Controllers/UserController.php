@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Base\Base;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 
 class UserController extends Base
 {
-    //    
+    //
     /**
-     * showUser
+     * showUser.
      *
      * @return void
      */
-    public function showUser() {
+    public function showUser()
+    {
         return Base::display('users');
     }
 
-    
     /**
-     * create
+     * create.
      *
      * @param  mixed $request
      * @return void
      */
     public function createUser(UserRequest $userRequest)
-    {   
+    {
         $data = $userRequest->validated();
+
         return Base::store($data, 'users');
     }
 
     /**
-     * Update data User
+     * Update data User.
      *
      * @param  mixed $request
      * @return void
@@ -41,11 +42,12 @@ class UserController extends Base
     {
         $id = $userRequest->id;
         $data = $userRequest->validated();
+
         return Base::update($data, 'users', $id, 'id');
     }
 
     /**
-     * Delete data User
+     * Delete data User.
      *
      * @param  mixed $request
      * @return void
@@ -53,6 +55,7 @@ class UserController extends Base
     public function deleteUser(Request $request)
     {
         $id = $request->id;
+
         return Base::delete('users', 'id', '=', $id);
     }
 }

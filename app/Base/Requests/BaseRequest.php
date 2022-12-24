@@ -2,13 +2,12 @@
 
 namespace App\Base\Requests;
 
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class BaseRequest
-
 {
     public static function rules($request)
     {
@@ -22,13 +21,14 @@ class BaseRequest
         foreach ($queryFields as $queryField) {
             $rules[$queryField] = function ($attribute, $value, $fails) {
                 if (in_array(strtolower($attribute), ['select', 'password'])) {
-                    return $fails('Field '. strtoupper($attribute) . ' is not allowed');
+                    return $fails('Field ' . strtoupper($attribute) . ' is not allowed');
                 }
                 if (str_contains($value, 'password')) {
                     return $fails('Value of field ' . strtoupper($attribute) . ' is not allowed');
                 }
             };
         }
+
         return $rules;
     }
 
@@ -41,7 +41,7 @@ class BaseRequest
                 'statusCode' => JsonResponse::HTTP_UNPROCESSABLE_ENTITY,
                 'statusText' => JsonResponse::$statusTexts[JsonResponse::HTTP_UNPROCESSABLE_ENTITY],
                 'message' => $message,
-                'data' => $errors
+                'data' => $errors,
             ],
             JsonResponse::HTTP_UNPROCESSABLE_ENTITY
         ));

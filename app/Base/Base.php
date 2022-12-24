@@ -5,12 +5,12 @@ namespace App\Base;
 use App\Base\Repository\BaseRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class Base extends Controller
-{   
+{
     public $baseRepository;
     public $baseRequest;
 
@@ -18,39 +18,42 @@ class Base extends Controller
     {
         $this->baseRepository = $baseRepository;
     }
+
     /**
-     * getById
+     * getById.
      *
      * @param  mixed $id
      * @return array
      */
-    public function getById(int $id, string $table) {
+    public function getById(int $id, string $table)
+    {
         $datas = $this->baseRepository->getById($id, $table);
-        if(!empty($datas)) {
-            return $this->sendResponSuccess("", $datas);
-        }else {
-            return $this->sendResponErrors("Get data errors", ['id' => $id]);
+        if (!empty($datas)) {
+            return $this->sendResponSuccess('', $datas);
+        } else {
+            return $this->sendResponErrors('Get data errors', ['id' => $id]);
         }
     }
-    
+
     /**
-     * insert
+     * insert.
      *
      * @param  mixed $datas
      * @param  mixed $table
      * @return void
      */
-    public function store(array $datas, string $table) {
+    public function store(array $datas, string $table)
+    {
         $id = $this->baseRepository->store($datas, $table);
-        if(!empty($id)) {
-            return $this->sendResponSuccess("Create success", $id, FALSE);
+        if (!empty($id)) {
+            return $this->sendResponSuccess('Create success', $id, false);
         } else {
-           return $this->sendResponErrors("Create new data errors", $datas);
+            return $this->sendResponErrors('Create new data errors', $datas);
         }
     }
-    
+
     /**
-     * update
+     * update.
      *
      * @param  mixed $datas
      * @param  mixed $table
@@ -58,34 +61,36 @@ class Base extends Controller
      * @param  mixed $field
      * @return void
      */
-    public function update(array $datas, string $table, mixed $id, string $field) {
+    public function update(array $datas, string $table, mixed $id, string $field)
+    {
         $id = $this->baseRepository->update($datas, $table, $id, $field);
-        if(!empty($id)){
-            return $this->sendResponSuccess("Update success", $id, FALSE);
-        }else {
-            return $this->sendResponErrors("Update data errors", $id);
+        if (!empty($id)) {
+            return $this->sendResponSuccess('Update success', $id, false);
+        } else {
+            return $this->sendResponErrors('Update data errors', $id);
         }
     }
-    
+
     /**
-     * display
+     * display.
      *
      * @param  mixed $table
      * @param  mixed $pageNumber
      * @return void
      */
-    public function display(string $table) {
-        $datas =  $this->baseRepository->display($table);
-        
-        if($datas){
-            return $this->sendResponSuccess("", $datas);
-        }else {
-            return $this->sendResponErrors("Display data errors", []);
+    public function display(string $table)
+    {
+        $datas = $this->baseRepository->display($table);
+
+        if ($datas) {
+            return $this->sendResponSuccess('', $datas);
+        } else {
+            return $this->sendResponErrors('Display data errors', []);
         }
     }
 
     /**
-     * delete
+     * delete.
      *
      * @param  mixed $table
      * @param  mixed $field
@@ -93,32 +98,33 @@ class Base extends Controller
      * @param  mixed $value
      * @return void
      */
-    public function delete(string $table, string $field, string $operator = '=', $value) {
+    public function delete(string $table, string $field, string $operator, $value)
+    {
         $result = $this->baseRepository->delete($table, $field, $operator, $value);
-        if(!empty($result)){
-            return $this->sendResponSuccess("Delete success", $value, FALSE);
-        }else {
-            return $this->sendResponErrors("Delete data errors", [$field => $value]);
+        if (!empty($result)) {
+            return $this->sendResponSuccess('Delete success', $value, false);
+        } else {
+            return $this->sendResponErrors('Delete data errors', [$field => $value]);
         }
     }
-    
+
     /**
-     * sendResponSuccess
+     * sendResponSuccess.
      *
      * @param  mixed $message
      * @param  mixed $result
      * @return void
      */
-    private function sendResponSuccess(string $message, $result, $isPaginate = TRUE) {
-        
+    private function sendResponSuccess(string $message, $result, $isPaginate = true)
+    {
         $response = [
             'status'  => JsonResponse::HTTP_OK,
             'statusCode'    => JsonResponse::HTTP_OK,
             'message' => $message,
         ];
-        if($isPaginate) {
+        if ($isPaginate) {
             $response['data'] = $this->paginate($result);
-        }else {
+        } else {
             $response['data']['record'][]['id'] = $result;
         }
 
@@ -126,27 +132,28 @@ class Base extends Controller
     }
 
     /**
-     * sendResponSuccess
+     * sendResponSuccess.
      *
      * @param  mixed $message
      * @param  mixed $result
      * @return void
      */
-    private function sendResponErrors(string $message, array $data) {
+    private function sendResponErrors(string $message, array $data)
+    {
         $response = new Response;
-        
+
         $response = [
             'status'  => JsonResponse::HTTP_OK,
             'statusCode'    => JsonResponse::HTTP_OK,
             'message' => $message,
             'data' => [
-                'record' => $data
+                'record' => $data,
             ],
         ];
 
         return response()->json($response, JsonResponse::HTTP_OK);
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -156,7 +163,8 @@ class Base extends Controller
     {
         $perPage = config('common.item_per_page') ?? 1;
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-        $lengthAwarePaginator =  new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+        $lengthAwarePaginator = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+
         return [
             'record' => $lengthAwarePaginator->items(),
             'limit' => $perPage,
