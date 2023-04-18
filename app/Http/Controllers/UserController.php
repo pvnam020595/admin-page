@@ -4,58 +4,75 @@ namespace App\Http\Controllers;
 
 use App\Base\Base;
 use App\Http\Requests\UserRequest;
-use Illuminate\Http\Request;
+use App\Models\User;
 
-class UserController extends Base
+/**
+ *
+ */
+class UserController
 {
-    //
-    /**
-     * showUser.
-     *
-     * @return void
-     */
+    private $userModel;
+    public function __construct(User $userModel)
+    {
+        $this->userModel =  $userModel;
+    }
     public function showUser()
     {
-        return Base::display('users');
+        return $this->userModel->showUser();
     }
 
-    /**
-     * create.
-     *
-     * @param  mixed $request
-     * @return void
-     */
     public function createUser(UserRequest $userRequest)
     {
-        $data = $userRequest->validated();
-
-        return Base::store($data, 'users');
+        $datavalidated = $userRequest->validated();
+        return $this->userModel->createUser($datavalidated);
     }
+    // /**
+    //  * showUser.
+    //  *
+    //  * @return void
+    //  */
+    // public function showUser()
+    // {
+    //     return Base::display('users');
+    // }
 
-    /**
-     * Update data User.
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function updateUser(UserRequest $userRequest)
-    {
-        $id = $userRequest->id;
-        $data = $userRequest->validated();
+    // /**
+    //  * create.
+    //  *
+    //  * @param  mixed $request
+    //  * @return void
+    //  */
+    // public function createUser(UserRequest $userRequest)
+    // {
+    //     $data = $userRequest->validated();
 
-        return Base::update($data, 'users', $id, 'id');
-    }
+    //     return Base::store($data, 'users');
+    // }
 
-    /**
-     * Delete data User.
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function deleteUser(Request $request)
-    {
-        $id = $request->id;
+    // /**
+    //  * Update data User.
+    //  *
+    //  * @param  mixed $request
+    //  * @return void
+    //  */
+    // public function updateUser(UserRequest $userRequest)
+    // {
+    //     $id = $userRequest->id;
+    //     $data = $userRequest->validated();
 
-        return Base::delete('users', 'id', '=', $id);
-    }
+    //     return Base::update($data, 'users', $id, 'id');
+    // }
+
+    // /**
+    //  * Delete data User.
+    //  *
+    //  * @param  mixed $request
+    //  * @return void
+    //  */
+    // public function deleteUser(Request $request)
+    // {
+    //     $id = $request->id;
+
+    //     return Base::delete('users', 'id', '=', $id);
+    // }
 }

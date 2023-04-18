@@ -21,10 +21,10 @@ class BaseRequest
         foreach ($queryFields as $queryField) {
             $rules[$queryField] = function ($attribute, $value, $fails) {
                 if (in_array(strtolower($attribute), ['select', 'password'])) {
-                    return $fails('Field ' . strtoupper($attribute) . ' is not allowed');
+                    return $fails('Field ' . $attribute . ' is not allowed');
                 }
                 if (str_contains($value, 'password')) {
-                    return $fails('Value of field ' . strtoupper($attribute) . ' is not allowed');
+                    return $fails('Value of field ' . $attribute . ' is not allowed');
                 }
             };
         }

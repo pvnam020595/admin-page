@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login.index')
+    ->middleware('auth');
 });
+
+Route::get('/', function() {
+    return view('web.home');
+})->name('index');
