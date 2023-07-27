@@ -18,8 +18,12 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install intl
+    && docker-php-ext-install intl \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
+# Prepare fake SSL certificate
+RUN apt-get install -y ssl-cert
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -27,12 +31,25 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
+
+# Setup Apache2 mod_ssl
+RUN a2enmod ssl
+
+# Setup Apache2 HTTPS env
+RUN a2ensite default-ssl.conf
+
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# PHP.ini
+COPY ./php.ini /usr/local/etc/php/conf.d/
+#Apache defualt conf
+COPY ./apache-default.conf /etc/apache2/site-available/000-defualt.conf
 
 # Set working directory
 WORKDIR /var/www/html
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install
+
+EXPOSE 80 443

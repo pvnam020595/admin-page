@@ -1,4 +1,4 @@
-version: '1'
+version: '2.2'
 services:
   db:
     container_name: Maon-db
@@ -29,7 +29,9 @@ services:
   project:
     container_name: Maon-be
     ports:
-      - "80:80"
+      - "8443:443"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     depends_on:
       - db
     build: .
