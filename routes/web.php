@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login.index')
-    ->middleware('auth');
+Route::prefix('/admin')->group(function () {
+ Route::get("/login", [AdminController::class, 'viewLogin'])->name('admin.viewLogin');
+ Route::post("/login", [AdminController::class, 'login'])->name('admin.login');
 });
-
-Route::get('/', function() {
-    return view('web.home');
-})->name('index');
+Route::prefix('/admin')->middleware(['web', 'auth:admin'])->group(function () {
+ Route::get("/register", [AdminController::class, 'register'])->name('admin.register');
+ Route::post("/register", [AdminController::class, 'storeUser']);
+ Route::get("/forgot_password", [AdminController::class, 'forGotPassword'])->name('admin.forgot_password');
+ Route::get("/dashboard", [AdminController::class, 'dashboard'])->name("admin.dashboard");
+});

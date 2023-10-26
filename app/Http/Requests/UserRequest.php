@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Base\Requests\BaseRequest;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class UserRequest extends FormRequest
 {
@@ -24,31 +22,27 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules(): array
     {
-        return array_merge([
-            'email' => 'required|email',
-            'password' => 'required',
-            'name' => 'required',
-        ], BaseRequest::rules($request));
+        return [
+            // 'name' => "required",
+            'password' => "required",
+            'email' => "required|email",
+        ];
     }
 
     /**
      * messages.
      *
-     * @return void
+     * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
             'password.required' => 'Password is required',
-            'name.required' => 'Name is rquired',
+            // 'name.required' => 'Name is rquired',
         ];
-    }
-
-    public function failedValidation(Validator $validator)
-    {
-        BaseRequest::failedValidate($validator);
     }
 }

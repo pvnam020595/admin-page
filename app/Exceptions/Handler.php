@@ -2,12 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
-use App\Exceptions\Web\CustomHttpException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -37,33 +34,15 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-        });
+        // $this->renderable(function(\Exception $e) {
+        //     dd("code in here");
+        //     if($e instanceof QueryException) {
+        //         return [
+        //             "message" => "Insert fail please check",
+        //         ];
+        //     }
+        // });
     }
 
-    public function render($request, Throwable $e)
-    {
-        // dd($e);
-        // new CustomHttpException();
-        // dd($e);
-        // new InvalidMethodExceptions();
-        // if ($e instanceof NotFoundHttpException) {
-        //     $response = [
-        //         'statusCode'    => $e->getStatusCode(),
-        //         'statusText' => JsonResponse::$statusTexts[$e->getStatusCode()],
-        //         'message' => 'API Not Found',
-        //     ];
 
-        //     return response()->json($response, $e->getStatusCode());
-        // }
-        // if ($e instanceof MethodNotAllowedHttpException) {
-        //     $response = [
-        //         'statusCode'    => $e->getStatusCode(),
-        //         'statusText' => JsonResponse::$statusTexts[$e->getStatusCode()],
-        //         'message' => $e->getMessage(),
-        //     ];
-
-        //     return response()->json($response, $e->getStatusCode());
-        // }
-    }
 }

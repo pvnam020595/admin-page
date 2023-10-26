@@ -31,6 +31,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
+# Install Redis
+
+RUN pecl install redis
 
 # Setup Apache2 mod_ssl
 RUN a2enmod ssl
@@ -50,6 +53,6 @@ COPY ./apache-default.conf /etc/apache2/site-available/000-defualt.conf
 WORKDIR /var/www/html
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs npm
 
 EXPOSE 80 443
