@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-cart"></i></div>
                         <div class="sidebar-title">
@@ -30,7 +30,7 @@
                     </ul>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-card-list"></i></div>
                         <div class="sidebar-title">
@@ -44,7 +44,7 @@
                     </ul>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-mailbox"></i></div>
                         <div class="sidebar-title">
@@ -58,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-person"></i></div>
                         <div class="sidebar-title">
@@ -72,7 +72,7 @@
                     </ul>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-person"></i></div>
                         <div class="sidebar-title">
@@ -86,7 +86,7 @@
                     </ul>
                 </li>
                 <li class="inactive">
-                    <a href="#" class="has-arrow" aria-expanded="false" data-bs-toggle="collapse"
+                    <a href="#" class="sub-menu" aria-expanded="false" data-bs-toggle="collapse"
                         onclick="navbarEvent.toggleLeftNavbar(this)">
                         <div class="sidebar-icon-small"><i class="bi bi-gear"></i></div>
                         <div class="sidebar-title">

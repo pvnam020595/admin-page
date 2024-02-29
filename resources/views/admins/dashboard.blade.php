@@ -62,7 +62,7 @@
         },
         toggleLeftNavbar: function(event) {
             let _this = event;
-            const elements = document.querySelectorAll('.has-arrow')
+            const elements = document.querySelectorAll('.sub-menu')
             elements.forEach(element => {
                 if(_this === element) {
                     if(element.parentElement.classList.contains('active')) {

@@ -1,7 +1,7 @@
 @extends('admins.home')
-@section('login')
+@section('register')
     <div class="signin-form col-lg-6">
-        <h1 class="text-center">Login Admin</h1>
+        <h1 class="text-center">Register</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.login') }}" class="mb-3" method="POST">
+        <form action="{{ route('admin.register') }}" class="mb-3" method="POST">
             @csrf
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="bi bi-person"></i></span>
@@ -47,14 +47,14 @@
             <h6 class="text-center">or login with:</h6>
         </div>
         <div class="row">
-            <div class="col-lg-4 btn-facebook">
+            <div class="col-lg-4 btn-facebook col-sm-12 pt-1">
                 <a href="#" class="btn btn-primary btn-lg w-100"><i class="bi bi-facebook"></i>
                     {{ __('Facebook') }}</a>
             </div>
-            <div class="col-lg-4 btn-google">
+            <div class="col-lg-4 btn-google col-sm-12 pt-1">
                 <a href="#" class="btn btn-danger btn-lg w-100"><i class="bi bi-google"></i> {{ __('Google') }}</a>
             </div>
-            <div class="col-lg-4 btn-twitter">
+            <div class="col-lg-4 btn-twitter col-sm-12 pt-1">
                 <a href="#" class="btn btn-info btn-lg w-100"><i class="bi bi-twitter"></i> {{ __('Twitter') }}</a>
             </div>
         </div>

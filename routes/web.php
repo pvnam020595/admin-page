@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\Admins\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -18,10 +19,11 @@ use Illuminate\Http\Request;
 Route::prefix('/admin')->group(function () {
  Route::get("/login", [AdminController::class, 'viewLogin'])->name('admin.viewLogin');
  Route::post("/login", [AdminController::class, 'login'])->name('admin.login');
+ Route::get("/register", [AuthController::class, 'register'])->name('admin.register');
+ Route::post("/register", [AuthController::class, 'store'])->name('admin.store');
 });
 Route::prefix('/admin')->middleware(['web', 'auth:admin'])->group(function () {
- Route::get("/register", [AdminController::class, 'register'])->name('admin.register');
- Route::post("/register", [AdminController::class, 'storeUser']);
+ Route::get("/logout", [AdminController::class, 'logout'])->name('admin.logout');
  Route::get("/forgot_password", [AdminController::class, 'forGotPassword'])->name('admin.forgot_password');
  Route::get("/dashboard", [AdminController::class, 'dashboard'])->name("admin.dashboard");
 });

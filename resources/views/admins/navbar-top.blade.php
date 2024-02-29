@@ -37,7 +37,7 @@
                          <a href="#" class="mt-15">Settings</a>
                      </li>
                      <li>
-                         <a href="#" class="mt-15">Log Out </a>
+                         <a href="{{route('admin.logout')}}" class="mt-15">Log Out </a>
                      </li>
                  </div>
              </div>

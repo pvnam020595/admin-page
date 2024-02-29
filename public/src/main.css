@@ -12173,14 +12173,14 @@ aside.sidebar .nav-left .nav-left-content ul li a {
 aside.sidebar .nav-left .nav-left-content ul li a .sidebar-title {
   padding-left: 0.75rem;
 }
-aside.sidebar .nav-left li.inactive a.has-arrow::after {
+aside.sidebar .nav-left li.inactive a.sub-menu::after {
   font-family: "Bootstrap-icons";
   content: "\f285";
   position: absolute;
   transition: 0.5s;
   right: 10px;
 }
-aside.sidebar .nav-left a.has-arrow ul {
+aside.sidebar .nav-left a.sub-menu ul {
   opacity: 0;
   transition: 0.5s;
   visibility: hidden;
@@ -12197,7 +12197,7 @@ aside.sidebar .nav-left li.active > ul {
   visibility: visible;
   padding-left: 1.5rem;
 }
-aside.sidebar .nav-left li.active a.has-arrow::after {
+aside.sidebar .nav-left li.active a.sub-menu::after {
   font-family: "Bootstrap-icons";
   content: "\f285";
   transition: 0.5s;

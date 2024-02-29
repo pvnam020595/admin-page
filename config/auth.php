@@ -51,6 +51,7 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admin',
+            'remember' => 43200, //equal 1 months
         ],
     ],
 

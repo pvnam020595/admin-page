@@ -192,7 +192,7 @@ aside.sidebar {
    padding-left: .75rem;
   }
  
-  li.inactive a.has-arrow::after {
+  li.inactive a.sub-menu::after {
    font-family: 'Bootstrap-icons';
    content: "\F285";
    position: absolute;
@@ -200,7 +200,7 @@ aside.sidebar {
    right: 10px;
   }
  
-  a.has-arrow ul {
+  a.sub-menu ul {
    opacity: 0;
    transition: .5s;
    visibility: hidden;
@@ -222,7 +222,7 @@ aside.sidebar {
  
   }
  
-  li.active a.has-arrow::after {
+  li.active a.sub-menu::after {
    font-family: 'Bootstrap-icons';
    content: "\F285";
    transition: .5s;

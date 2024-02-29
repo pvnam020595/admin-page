@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->dateTime('last_active', 0)->nullable();
-            $table->foreignId('role_id')->constrained()->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->rememberToken();
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('roles');
     }
 };

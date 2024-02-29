@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Session\DatabaseSessionHandler;
+use Illuminate\Http\Request;
+use Cookie;
 class AdminController extends Controller
 {
   public function register()
@@ -22,6 +24,7 @@ class AdminController extends Controller
   }
   public function dashboard()
   {
+    
     return view('admins.dashboard');
   }
 
@@ -30,39 +33,32 @@ class AdminController extends Controller
     try
     {
       $adminValidated = $adminRequest->validated();
-      $amdin = Admin::where("email", $adminValidated['email'])->get()->first();
-      if (empty($amdin))
+      // $amdin = Admin::where("email", $adminValidated['email'])->get()->first();
+      // if (empty($amdin))
+      // {
+      //   return redirect()->route("admin.login")->withInput()->withErrors(["Email is not exist!"]);
+      // }
+      // if (!Hash::check($adminValidated['password'], $amdin->password))
+      // {
+      //   return redirect()->route("admin.login")->withInput()->withErrors(["Password incorrect!"]);
+      // }
+      if(Auth::guard('admin1')->attempt([
+        'email' => $adminValidated['email'],
+        'password' => $adminValidated['password']
+      ]))
       {
-        return redirect()->route("admin.login")->withInput()->withErrors(["Email is not exist!"]);
-      }
-      if (!Hash::check($adminValidated['password'], $amdin->password)) 
-      {
-        return redirect()->route("admin.login")->withInput()->withErrors(["Password incorrect!"]);
-      }
-      if(Auth::guard('admin')->attempt([
-                                        'email' => $adminValidated['email'],
-                                        'password' => $adminValidated['password']
-                                      ]))
-      {
+        
         return redirect()->route('admin.dashboard');
       }
     } catch (\Throwable $th) {
-      throw $th;
+      dd($th->getMessage());
     }
   }
 
-  public function storeUser(Request $request)
+  
+  public function logout()
   {
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login');
   }
-
-  //   public function emailVerify(EmailVerifyRequest $emailVerifyRequest)
-  //   {
-  //     try {
-  //       $data = $emailVerifyRequest->adminValidated();
-  //       $result = $this->userRepositoryInterface->verifyEmail($data);
-  //       return response()->json($result, 200);
-  //     } catch (Throwable $e) {
-  //       throw $e;
-  //     }
-  //   }
 }

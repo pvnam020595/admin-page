@@ -2,19 +2,20 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admins\Modules;
+use App\Models\Admins\Roles;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-class AdminSeeder extends Seeder
+class ModuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        
+        Modules::factory()->count(3)
+            ->has(Roles::factory())
+            ->create();
     }
 }
