@@ -53,13 +53,9 @@ COPY ./apache-default.conf /etc/apache2/site-available/000-defualt.conf
 # RUN chmod -R 777 /var/www/html
 # Set working directory
 WORKDIR /var/www/html
-# Add User
-RUN useradd -ms /bin/bash namhi
+
 # Copy existing application directory permission
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs npm
 COPY . /var/www/html/
-RUN chown -R namhi:namhi /var/www/html
-RUN chmod 777 /var/www/html
-USER namhi
 EXPOSE 80 443
