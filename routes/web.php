@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admins\AdminController;
 use App\Http\Controllers\Admins\AuthController;
 use App\Http\Controllers\UserController;
+use App\Jobs\TestSQS;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 /*
@@ -26,4 +27,9 @@ Route::prefix('/admin')->middleware(['web', 'auth:admin'])->group(function () {
  Route::get("/logout", [AdminController::class, 'logout'])->name('admin.logout');
  Route::get("/forgot_password", [AdminController::class, 'forGotPassword'])->name('admin.forgot_password');
  Route::get("/dashboard", [AdminController::class, 'dashboard'])->name("admin.dashboard");
+});
+Route::get("/sqs", function() {
+  $test = ["1","321"];
+  $nam = json_encode($test);
+  TestSQS::dispatch($nam)->onConnection('sqs')->onQueue("test-sqs");
 });
