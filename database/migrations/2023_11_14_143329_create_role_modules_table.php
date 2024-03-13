@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('role_modules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained()->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('module_id')->constrained()->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->json('module_permission')->default(null);
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('module_id');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

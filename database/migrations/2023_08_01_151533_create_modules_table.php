@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('link');
+            $table->string('model');
+            $table->string('short_name')->unique();
             $table->integer('parent_id')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
