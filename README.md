@@ -1,73 +1,15 @@
-## MySql
-```
-PORT: 3306
-MYSQL_DATABASE: maon_db
-MYSQL_ROOT_PASSWORD: root
-MYSQL_ROOT_USER: root
+# 🚀 Welcome to your new awesome project!
+
+This project has been created using **webpack-cli**, you can now run
 
 ```
-## Step install project laravel
-
-### Install composer
-```
-composer install
-After run check version composer : composer --version
-
-```
-### Install Laravel
-```
-composer create-project laravel/laravel {name_project}
-e.g: composer create-project laravel/laravel example-app
-
+npm run build
 ```
 
-
-## Run docker compose
-
-```
-docker compose build
-docker compose up -d
+or
 
 ```
+yarn build
+```
 
-## Run composer install dependence
-```
-1. docker -it Maon-be bash
-
-2. composer install
-```
-## Remove "Public" from URL
-```
-1. The first step is, Rename server.php in your Laravel root folder to index.php
-2. Copy the .htaccess file from /public directory to your Laravel root folder.
-```
-## Launch App
-### Create file .env
-```
-Copy .env.example .env. Don't forget run command 
-```
-```php
-php artisan key:generate
-```
-### Run and create table
-```
-php artisan migrate
-```
-### System
-```
-http://localhost/
-
-```
-### API
-```
-GET - http://localhost/api/
-POST - http://localhost/api/create
-PUT - http://localhost/api/edit/{id}
-DELETE - http://localhost/api/delete/{id}
-```
-# Note
-**Please run command for lint code and fix them before PUSH code.**
-```php
-composer sniff
-composer lint
-```
+to bundle your application

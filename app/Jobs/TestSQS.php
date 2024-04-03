@@ -24,10 +24,10 @@ class TestSQS implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle($e): void
     {
         //
-        // ddd("dddddd");
+        dd(e);
             // echo "SQS test";
     }
 }
