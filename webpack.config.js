@@ -1,15 +1,11 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 const isProduction = process.env.NODE_ENV == 'production';
-
-
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
-// const stylesHandler = MiniCssExtractPlugin.loader;
 
 
 
@@ -28,14 +24,11 @@ const config = {
         removeEmptyChunks: true,
         splitChunks: {
             chunks: 'all',
-            minSize: 20000,
+            minSize: 150000,
+            maxAsyncSize: 190000,
             name(module, chunks, cacheGroupKey) {
-                const moduleFileName = module
-                  .identifier()
-                  .split('/')
-                  .reduceRight((item) => item);
-                  const allChunksNames = chunks.map((item) => item.name).join('~');
-                  return allChunksNames;
+                const allChunksNames = chunks.map((item) => item.name).join('~');
+                return allChunksNames;
             },
         },
     },
@@ -62,15 +55,7 @@ const config = {
             },
             {
                 test: /\.(woff2|woff)$/i,
-                include: path.resolve(__dirname, './node_modules/bootstrap-icons/font/fonts'),
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'fonts',
-                        publicPath: 'fonts',
-                    },
-                }
+                type: 'asset/resource',
             }
         ],
     },
@@ -82,8 +67,7 @@ module.exports = () => {
         config.plugins.push(new MiniCssExtractPlugin({ 
             filename: 'css/[name].css',
         }));
-
-        // config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+        config.performance = { hints : false }
 
     } else {
         config.mode = 'development';
