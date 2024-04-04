@@ -34,14 +34,6 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        // $this->renderable(function(\Exception $e) {
-        //     dd("code in here");
-        //     if($e instanceof QueryException) {
-        //         return [
-        //             "message" => "Insert fail please check",
-        //         ];
-        //     }
-        // });
     }
 
 

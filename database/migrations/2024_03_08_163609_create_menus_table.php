@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->integer('module_ide');
+            $table->integer('module_id');
             $table->integer('parent_id');
             $table->timestamps();
         });
