@@ -2,24 +2,21 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next, ...$guards)
     {
-        if (!$request->expectsJson() && $request->is('admin/*')) {
-            return route('admin.viewLogin');
+        foreach ($guards as $guard)
+        {
+            if ($guard === config('common.guard.admin') && !Auth::guard($guard)->check())
+            {
+                return redirect()->route('admin');
+            }
         }
-        if (!$request->expectsJson()) {
-            return route('admin.viewLogin');
-        }
+        return $next($request);
     }
 }

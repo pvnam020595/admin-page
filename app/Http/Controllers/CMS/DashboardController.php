@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\CMS;
 
-use App\DTO\AdminDTO;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CMS\AdminRequest;
-use App\Services\AdminService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admins.login');
+        //
+        return view("admins.dashboard");
     }
 
     /**
@@ -66,16 +65,12 @@ class AdminController extends Controller
         //
     }
 
-    public function login(AdminRequest $request)
-    {
-        $logined = (new AdminService)->login(AdminDTO::fromRequest($request));
-        if ($logined) {
-            $request->session()->regenerate();
-            
-            return redirect()->route('dashboard.index');
-        }
-        return back()->withErrors([
-            'login_error' => 'The provided credentials do not match our records.',
-        ]);
+    public function logout(Request $request) {
+        Auth::guard('admin')->logout();
+        $request->session()->flush();
+        // $request->session()->regenerateToken();
+        // dd($request->session());
+        // $request->session()->regenerateToken();
+        return redirect()->route('admin');
     }
 }

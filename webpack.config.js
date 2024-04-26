@@ -13,6 +13,7 @@ const config = {
     entry: {
         "bootstrap": { import: './src/js/bootstrap.js', filename: 'js/[name].bundle.js' },
         "bootstrap-icons" : { import: './src/js/bootstrap-icons.js', filename: 'js/[name].bundle.js' },
+        "custom" : { import: './src/js/custom.js', filename: 'js/[name].bundle.js' },
     },
     output: {
         path: path.resolve(__dirname, 'public/src'),

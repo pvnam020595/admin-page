@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-
-class Admins extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Auth\Authenticatable;
+class Admins extends Authenticatable
 {
     use HasFactory;
     
     protected $table = 'admin';
+    protected $guard = 'admin';
     /**
      * The attributes that are mass assignable.
      *

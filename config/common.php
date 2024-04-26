@@ -2,5 +2,9 @@
 
 return [
     'item_per_page' => 1,
-    'available_locale' => ['en', 'vi', 'fr']
+    'available_locale' => ['en', 'vi', 'fr'],
+    'guard' => [
+        'admin' => 'admin',
+        'user' => 'user',
+    ]
 ];

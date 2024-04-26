@@ -1,7 +1,7 @@
 @extends('admins.home')
 @section('login')
     <div class="signin-form col-lg-6">
-        <h1 class="text-center">Login Admin</h1>
+        <h1 class="text-center">{{ __('app.login_admin') }}</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -45,7 +45,7 @@
         </form>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <span>Not a member ?</span> <a href="{{ route('admin.register') }}">{{ __('app.regiter') }}</a>
+                <span>Not a member ?</span> <a href="{{ route('admin.register') }}">{{ __('app.register') }}</a>
             </div>
         </div>
         <div class="row">
