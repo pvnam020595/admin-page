@@ -12,5 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install npm
+      run: npm install
     - name: Run webpack to production
       run: npm run build
