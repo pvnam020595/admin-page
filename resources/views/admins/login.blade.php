@@ -1,7 +1,7 @@
 @extends('admins.home')
 @section('login')
     <div class="signin-form col-lg-6">
-        <h1 class="text-center">Login Admin</h1>
+        <h1 class="text-center">{{ __('app.login_admin') }}</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -26,21 +26,26 @@
             <div class="input-group mb-3 col-xl-12">
                 <div class="row w-100">
                     <div class="col-lg-6 text-center">
-                        <input type="checkbox" name="remember_login" id="remember_login" value="1">
-                        <label>Remember me</label>
+
+                        <label>
+                            <input type="checkbox" name="remember_login" id="remember_login" value="1">
+                            {{ __('app.remember_me') }}
+                        </label>
                     </div>
                     <div class="col-lg-6 text-center">
-                        <a href="{{ route('admin.forgot_password') }}" class="text-decoration-none">Forgot password?</a>
+                        <a href="{{ route('admin.forgot_password') }}" class="text-decoration-none">
+                            {{ __('app.forgot_password') }}
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
-                <button type="submit" class="btn btn-success w-100">Login</button>
+                <button type="submit" class="btn btn-success w-100">{{ __('app.login') }}</button>
             </div>
         </form>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <span>Not a member ?</span> <a href="{{ route('admin.register') }}">Register</a>
+                <span>Not a member ?</span> <a href="{{ route('admin.register') }}">{{ __('app.register') }}</a>
             </div>
         </div>
         <div class="row">
@@ -49,13 +54,13 @@
         <div class="row">
             <div class="col-lg-4 btn-facebook">
                 <a href="#" class="btn btn-primary btn-lg w-100"><i class="bi bi-facebook"></i>
-                    {{ __('Facebook') }}</a>
+                    {{ __('app.facebook') }}</a>
             </div>
             <div class="col-lg-4 btn-google">
-                <a href="#" class="btn btn-danger btn-lg w-100"><i class="bi bi-google"></i> {{ __('Google') }}</a>
+                <a href="#" class="btn btn-danger btn-lg w-100"><i class="bi bi-google"></i> {{ __('app.google') }}</a>
             </div>
             <div class="col-lg-4 btn-twitter">
-                <a href="#" class="btn btn-info btn-lg w-100"><i class="bi bi-twitter"></i> {{ __('Twitter') }}</a>
+                <a href="#" class="btn btn-info btn-lg w-100"><i class="bi bi-twitter"></i> {{ __('app.twitter') }}</a>
             </div>
         </div>
     </div>

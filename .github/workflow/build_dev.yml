@@ -1,0 +1,11 @@
+name: 
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: 
+  push: 
+    branches: ["dev"]
+  pull_request:
+    branches: ["dev"]
+jobs:
+    steps:
+      - name: Build webpack run production
+        run: npm run build

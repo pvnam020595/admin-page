@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admins\AdminController;
-use App\Http\Controllers\Admins\AuthController;
-use App\Http\Controllers\UserController;
-use App\Jobs\TestSQS;
+use App\Http\Controllers\CMS\AdminController;
+use App\Http\Controllers\CMS\DashboardController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,18 +18,15 @@ use Illuminate\Http\Request;
 */
 
 Route::prefix('/admin')->group(function () {
- Route::get("/login", [AdminController::class, 'viewLogin'])->name('admin.viewLogin');
- Route::post("/login", [AdminController::class, 'login'])->name('admin.login');
- Route::get("/register", [AuthController::class, 'register'])->name('admin.register');
- Route::post("/register", [AuthController::class, 'store'])->name('admin.store');
+  Route::get('/', [AdminController::class, 'index'])->name('admin');
+  Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
+  Route::get('/forgot_password', [AdminController::class, 'forgotPassword'])->name('admin.forgot_password');
+  Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
 });
-Route::prefix('/admin')->middleware(['web', 'auth:admin'])->group(function () {
- Route::get("/logout", [AdminController::class, 'logout'])->name('admin.logout');
- Route::get("/forgot_password", [AdminController::class, 'forGotPassword'])->name('admin.forgot_password');
- Route::get("/dashboard", [AdminController::class, 'dashboard'])->name("admin.dashboard");
+Route::prefix('/dashboard')->middleware('auth:admin')->group(function () {
+  Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+  Route::get('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
 });
-Route::get("/sqs", function() {
-  $test = ["1","321"];
-  $nam = json_encode($test);
-  TestSQS::dispatch($nam)->onConnection('sqs')->onQueue("test-sqs");
-});
+
+Route::get('/test-sns', [TestController::class, 'testSns']);
+Route::get('/test-sns', [TestController::class, 'testSns']);

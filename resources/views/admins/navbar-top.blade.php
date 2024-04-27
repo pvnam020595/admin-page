@@ -6,6 +6,19 @@
                  <i class="bi bi-list"></i>
              </a>
          </div>
+         <div class="search-bar">
+            <div class="i-search">
+                <i class="bi bi-search"></i>
+            </div>
+            <div class="f-search">
+                <form action="" method="post">
+                    <input type="text" placeholder="Search for">
+                </form>
+                <div class="">
+                    <i class="bi bi-search"></i>
+                </div>
+            </div>
+        </div>
          <div class="header-notification">
              <li class="mx-15">
                  <a href="#" class="messenger">
@@ -24,10 +37,10 @@
              <div class="profile-thumb mx-15">
                  <img src="https://demo.dashboardpack.com/cryptocurrency-html/img/transfer/4.png" alt="#">
              </div>
-             <div class="author-name">
+             {{-- <div class="author-name">
                  <h4 class="f-s-15">Jiue Anderson</h4>
                  <span class="f-s-12">Manager</span>
-             </div>
+             </div> --}}
              <div class="profile-info-iner">
                  <div class="profile-info-details d-flex flex-column w-215">
                      <li>
@@ -37,7 +50,7 @@
                          <a href="#" class="mt-15">Settings</a>
                      </li>
                      <li>
-                         <a href="{{route('admin.logout')}}" class="mt-15">Log Out </a>
+                         <a href="{{route('dashboard.logout')}}" class="mt-15">Log Out </a>
                      </li>
                  </div>
              </div>

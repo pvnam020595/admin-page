@@ -1,67 +1,77 @@
-'use strick'
+// Generated using webpack-cli https://github.com/webpack/webpack-cli
 
-const path = require("path");
-const autoprefixer = require('autoprefixer')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
-module.exports = {
-  mode: 'development',
-  entry: {
-    main: "./src/js/main.js",
-  },
-  output: {
-    path: path.resolve(__dirname, 'public/src'),
-    filename: '[name].js'
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+
+const isProduction = process.env.NODE_ENV == 'production';
+const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
+
+
+
+const config = {
+    entry: {
+        "bootstrap": { import: './src/js/bootstrap.js', filename: 'js/[name].bundle.js' },
+        "bootstrap-icons" : { import: './src/js/bootstrap-icons.js', filename: 'js/[name].bundle.js' },
+        "custom" : { import: './src/js/custom.js', filename: 'js/[name].bundle.js' },
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(scss|css|sass)$/,
-        // include: /src/,
-        // exclude: path.resolve(__dirname, "node_modules"),
-        // sideEffects: true,
-        // sideEffects: true,
-        use: [
-          {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  autoprefixer(),
-                ]
-              }
+    output: {
+        path: path.resolve(__dirname, 'public/src'),
+    },
+    plugins: [
+        new RemoveEmptyScriptsPlugin()
+    ],
+    optimization: {
+        removeEmptyChunks: true,
+        splitChunks: {
+            chunks: 'all',
+            minSize: 150000,
+            maxAsyncSize: 190000,
+            name(module, chunks, cacheGroupKey) {
+                const allChunksNames = chunks.map((item) => item.name).join('~');
+                return allChunksNames;
+            },
+        },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(scss|css|sass)$/i,
+                use: [stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(eot|svg|ttf|png|jpg|gif)$/i,
+                include: path.resolve(__dirname, './node_modules/bootstrap-icons/font/icons'),
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts',
+                        publicPath: 'fonts',
+                      }
+                    }
+                  ]
+                
+            },
+            {
+                test: /\.(woff2|woff)$/i,
+                type: 'asset/resource',
             }
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      {
-        test: /\.(js)$/,
-        include: /src/,
-        exclude: path.resolve(__dirname, "node_modules"),
-      }
-    ]
-  },
-  plugins: [
-    // new HtmlWebpackPlugin({ template: './src/index.html' })
-    new MiniCssExtractPlugin({ filename: "[name].css" })
-  ]
-}
+        ],
+    },
+};
+
+module.exports = () => {
+    if (isProduction) {
+        config.mode = 'production';
+        config.plugins.push(new MiniCssExtractPlugin({ 
+            filename: 'css/[name].css',
+        }));
+        config.performance = { hints : false }
+
+    } else {
+        config.mode = 'development';
+    }
+    return config;
+};

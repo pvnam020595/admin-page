@@ -18,11 +18,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/test', function(){
- TestSQS::dispatch()->onConnection('sqs')->onQueue("test-sqs");
-});
-// Route::post('/email-verify', [UserController::class, 'emailVerify'])->name('email-verify');
-// Route::post('/login', [UserController::class, 'login']);
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

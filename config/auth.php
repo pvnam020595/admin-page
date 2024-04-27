@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CMS\Admins;
+
 return [
 
     /*
@@ -80,7 +82,7 @@ return [
 
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admins\Admin::class,
+            'model' => Admins::class,
         ],
 
     ],

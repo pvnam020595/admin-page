@@ -37,31 +37,33 @@ RUN pecl install redis
 
 # Setup Apache2 mod_ssl
 RUN a2enmod ssl
-
+# Install NodeJs
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
 # Setup Apache2 HTTPS env
 RUN a2ensite default-ssl.conf
+# Add new user
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-USER root
+
 # PHP.ini
 COPY ./php.ini /usr/local/etc/php/conf.d/
 #Apache defualt conf
 COPY ./apache-default.conf /etc/apache2/site-available/000-defualt.conf
 # Copy source to path
 COPY . /var/www/html/
-# COPY --chown=www:www . /var/www/html/
+COPY --chown=root:root . /var/www/html/
 # assign user 100 ownership folder
 # RUN chown -R 1000 /var/www/html/
 RUN chmod a+rw /var/www/html/
 # Set working directory
 WORKDIR /var/www/html
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-# Run npm
-RUN apt-get install -y nodejs npm
+# RUN curl -fsSL https://deb.nodesource.com/setup_20.x  | bash -
 
+# RUN apt-get install -y nodejs
 # Change current user to www
-USER www
+# USER www
 EXPOSE 80 443

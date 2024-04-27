@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('model');
+            $table->string('name')->unique();
+            $table->string('path')->nullable();
             $table->string('short_name')->unique();
             $table->integer('parent_id')->nullable();
             $table->tinyInteger('is_active')->default(1);
