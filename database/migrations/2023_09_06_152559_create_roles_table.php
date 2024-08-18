@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 200);
             $table->string('short_name', 100);
+            $table->string('description', 100);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });

@@ -17,16 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/admin')->group(function () {
-  Route::get('/', [AdminController::class, 'index'])->name('admin');
-  Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
-  Route::get('/forgot_password', [AdminController::class, 'forgotPassword'])->name('admin.forgot_password');
-  Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
-});
-Route::prefix('/dashboard')->middleware('auth:admin')->group(function () {
-  Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-  Route::get('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
-});
+// Route::prefix('/admin')->group(function () {
+//   Route::get('/', [AdminController::class, 'index'])->name('admin');
+//   Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
+//   Route::get('/forgot_password', [AdminController::class, 'forgotPassword'])->name('admin.forgot_password');
+//   Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
+// });
+// Route::prefix('/dashboard')->middleware('auth:admin')->group(function () {
+//   Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+//   Route::get('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
+// });
 
-Route::get('/test-sns', [TestController::class, 'testSns']);
-Route::get('/test-sns', [TestController::class, 'testSns']);
+// Route::get('/test-sns', [TestController::class, 'testSns']);
+// Route::get('/test-sns', [TestController::class, 'testSns']);

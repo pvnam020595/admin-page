@@ -1,0 +1,170 @@
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/common.scss ***!
+  \*********************************************************************************************************************************************************/
+:root {
+  --blue: #4e73df;
+  --bg-color: #e0e5ec;
+  --f-24: 24px;
+  --img-42: 42px;
+  --menu-280: 280px;
+  --h-60: 60px;
+  --f-30: 30px;
+  --w-60: 60px;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+body .das-main img.w-42 {
+  max-width: var(--img-42);
+  max-height: var(--img-42);
+}
+body .das-main input:focus {
+  outline: 1px solid var(--bs-dark-border-subtle);
+  box-shadow: 1px solid var(--bs-dark-border-subtle);
+}
+body .das-main .icons {
+  font-style: 100%;
+  color: var(--bs-dark-border-subtle);
+}
+
+nav.header-content {
+  max-width: calc(100% - var(--menu-280));
+  width: calc(100% - var(--menu-280));
+  justify-content: space-between;
+  left: var(--menu-280);
+  border-bottom: 1px solid var(--bs-dark-border-subtle);
+  min-height: var(--h-60);
+  max-height: var(--h-60);
+}
+
+@media only screen and (min-width: 769px) {
+  nav.header-content .nav-left {
+    min-height: var(--h-60);
+    align-items: center;
+  }
+  nav.header-content .nav-left div .navbar-icon {
+    border: none;
+    background-color: transparent;
+    height: var(--h-60);
+    font-size: var(--f-30);
+    min-width: var(--h-60);
+  }
+  nav.header-content .nav-left div.header-search {
+    max-width: 300px;
+    width: 300px;
+    min-height: var(--f-30);
+  }
+  nav.header-content .nav-left div.header-search .form-search {
+    position: relative;
+  }
+  nav.header-content .nav-left div.header-search .form-search .inp-search {
+    width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid var(--bs-dark-border-subtle);
+    padding-left: 1.75em;
+    padding-right: 0.5em;
+  }
+  nav.header-content .nav-left div.header-search .form-search .icon-search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    width: 1.75em;
+    text-align: center;
+  }
+  nav.header-content .nav-left div.header-search .form-search .icon-search .icons {
+    font-size: 100%;
+    vertical-align: middle;
+  }
+  nav.header-content .nav-left div.header-search .form-search .icon-search:hover {
+    cursor: pointer;
+  }
+  nav.header-content .nav-right {
+    min-height: var(--h-60);
+    position: relative;
+  }
+  nav.header-content .nav-right .header-notification {
+    min-height: var(--h-60);
+    min-width: 100px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+  nav.header-content .nav-right .header-notification li > a > i {
+    font-size: var(--f-24);
+  }
+  nav.header-content .nav-right .header-notification li {
+    list-style: none;
+  }
+  nav.header-content .nav-right .header-notification li span {
+    top: 1.5em;
+    right: 0;
+    font-size: 9px;
+  }
+  nav.header-content .nav-right .header-notification li a {
+    display: block;
+    line-height: 60px;
+  }
+  nav.header-content .nav-right .profile-thumb {
+    min-height: var(--h-60);
+    min-width: 100px;
+    align-content: center;
+    text-align: center;
+  }
+  nav.header-content .nav-right .profile-thumb img {
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown i {
+    font-size: var(--f-24);
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown .w-40 {
+    width: 40px;
+    max-width: 40px;
+    text-align: center;
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown div.da-text {
+    width: calc(100% - 40px);
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown div.da-text a {
+    text-decoration: none;
+    color: var(--bs-dark-border-subtle);
+  }
+  nav.header-content .nav-right .profile-thumb .profile-info-iner li.users-item-dropdown:hover {
+    background-color: #F8F8FF;
+  }
+  section .nav-left {
+    width: 280px;
+    border-right: 1px solid var(--bs-dark-border-subtle);
+  }
+  section .nav-left .das-logo .das-large-logo {
+    display: block;
+    text-align: center;
+    line-height: var(--h-60);
+  }
+  section .nav-left .das-sidebar-menu .das-menu li.nav-item a {
+    display: block;
+    line-height: 30px;
+    padding: 5px 15px;
+    position: relative;
+  }
+}
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/navbar.scss ***!
+  \*********************************************************************************************************************************************************/
+:root {
+  --blue: #4e73df;
+  --bg-color: #e0e5ec;
+  --z-1000: 1000;
+  --z-1040: 1040;
+}

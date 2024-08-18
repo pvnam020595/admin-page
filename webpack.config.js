@@ -13,7 +13,7 @@ const config = {
     entry: {
         "bootstrap": { import: './src/js/bootstrap.js', filename: 'js/[name].bundle.js' },
         "bootstrap-icons" : { import: './src/js/bootstrap-icons.js', filename: 'js/[name].bundle.js' },
-        "custom" : { import: './src/js/custom.js', filename: 'js/[name].bundle.js' },
+        "common" : { import: './src/js/common.js', filename: 'js/[name].bundle.js' },
     },
     output: {
         path: path.resolve(__dirname, 'public/src'),
@@ -37,7 +37,7 @@ const config = {
         rules: [
             {
                 test: /\.(scss|css|sass)$/i,
-                use: [stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
             },
             {
                 test: /\.(eot|svg|ttf|png|jpg|gif)$/i,
@@ -71,6 +71,9 @@ module.exports = () => {
         config.performance = { hints : false }
 
     } else {
+        config.plugins.push(new MiniCssExtractPlugin({ 
+            filename: 'css/[name].css',
+        }));
         config.mode = 'development';
     }
     return config;
