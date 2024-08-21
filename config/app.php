@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Customize
         App\Providers\Users\UserServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
+        // 'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
 
     ],
 

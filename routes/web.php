@@ -30,3 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/test-sns', [TestController::class, 'testSns']);
 // Route::get('/test-sns', [TestController::class, 'testSns']);
+
+use App\Http\Controllers\PostController;
+
+Route::middleware('auth:sanctum')->get('/test', function (Request $request) { return []; });

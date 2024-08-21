@@ -36,5 +36,9 @@ class Handler extends ExceptionHandler
     {
     }
 
+    public function shouldReturnJson($request, Throwable $throwable) {
+        return true;
+    }
+
 
 }

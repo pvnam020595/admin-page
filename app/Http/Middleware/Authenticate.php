@@ -8,15 +8,27 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
-    public function handle($request, Closure $next, ...$guards)
+    // public function handle($request, Closure $next, ...$guards)
+    // {
+    //     foreach ($guards as $guard)
+    //     {
+    //         if ($guard === config('common.guard.admin') && !Auth::guard($guard)->check())
+    //         {
+    //             return redirect()->route('admin');
+    //         }
+    //     }
+    //     return $next($request);
+    // }
+    /**
+     * Get the path the user should be redirected to when they are not authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return string|null
+     */
+    protected function redirectTo($request)
     {
-        foreach ($guards as $guard)
-        {
-            if ($guard === config('common.guard.admin') && !Auth::guard($guard)->check())
-            {
-                return redirect()->route('admin');
-            }
+        if (!$request->expectsJson()) {
+            return route('login');
         }
-        return $next($request);
     }
 }

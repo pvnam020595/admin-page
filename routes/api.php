@@ -18,3 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\PostController;
+
+// Route::middleware('auth:sanctum')->group(function () {
+
+//  Route::get('/', [PostController::class, 'index']);
+//  Route::get('/post', [PostController::class, 'index']);
+// });
+//Protected routes
+// Route::group(['middleware'=>['auth:sanctum']], function () {
+//  Route::post('/logout', function() {
+//   return "1111";
+//  });
+// });
+Route::middleware('auth:sanctum')->get('/test', function (Request $request) { return []; });
