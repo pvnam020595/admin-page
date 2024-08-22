@@ -34,3 +34,4 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
 Route::middleware('auth:sanctum')->get('/test', function (Request $request) { return []; });
+Route::middleware('auth:sanctum')->get('/test', function (Request $request) { return []; });
