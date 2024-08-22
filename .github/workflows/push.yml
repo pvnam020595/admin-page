@@ -1,8 +1,21 @@
-name: GitHub Actions Demo
+name: GitHub Actions Demo Push
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    branchs:
+      - 'dev'
+    # paths: ## Just run event when change in 2 files below
+    #   - '**.js',
+    #   - '**.scss'
+  pull_request:
+    types: [synchronize]
+    branchs:
+      - 'master'
+    # paths:
+    #   - '**.js',
+    #   - '**.scss'
 jobs:
-  Explore-GitHub-Actions:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
